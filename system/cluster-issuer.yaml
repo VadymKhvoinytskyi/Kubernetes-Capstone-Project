@@ -1,0 +1,22 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: vk@aepfelbirnen.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-prod-account-key
+    solvers:
+    - http01:
+        gatewayHTTPRoute:
+          parentRefs:
+          - name: traefik-gateway            # Gateway name
+            namespace: traefik       # Gateway namespace
+            kind: Gateway
+            group: gateway.networking.k8s.io
+          # optional:
+          # labels:
+          #   acme: "true"
+

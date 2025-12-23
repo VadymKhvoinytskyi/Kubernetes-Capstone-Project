@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cnpg-connection-test
+#   namespace: default
+  namespace: nextcloud
+spec:
+  restartPolicy: Never
+  containers:
+    - name: psql
+      image: postgres:16-alpine
+      command: ["sleep", "3600"]
+      env:
+        - name: PGHOST
+          # value: "cluster-example-ro"   # e.g. mycluster-rw
+          value: "cluster-example-rw.default.svc.cluster.local"
+        - name: PGPORT
+          value: "5432"
+        - name: PGDATABASE
+          value: "nextcloud"
+        - name: PGUSER
+          value: "app"
+        - name: PGPASSWORD
+          value: ""
+
