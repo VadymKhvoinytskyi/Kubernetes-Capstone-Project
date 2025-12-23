@@ -1,0 +1,22 @@
+nextcloud:
+  host: nextcloud.saas.example.com
+  username: vadym
+  password: 
+
+internalDatabase:
+  enabled: false
+
+externalDatabase:
+  enabled: true
+  type: postgresql
+  host: cluster-example-rw.default.svc.cluster.local
+  database: nextcloud
+  user: app
+  password: 
+
+persistence:
+  enabled: true
+  storageClassName: hcloud-volumes
+  nextcloudData:
+    enabled: true
+    storageClassName: hcloud-volumes
